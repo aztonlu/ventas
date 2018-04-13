@@ -14,17 +14,18 @@
 			@endif
 		</div>
 	</div>
-   {!!Form::open(array('url'=>'ventas/venta','method'=>'POST','autocomplete'=>'off'))!!}
+   {!!Form::open(array('url'=>'ventas/venta','method'=>'POST','autocomplete'=>'on'))!!}
             {{Form::token()}}
             <div class="row">
              <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
                 <div class="form-group">
              <label for="nombre">Cliente</label>
-             <select name="idcliente" id="idcliente" class="form-control selectpicker" data-live-search="true">
+             <input type="text" name="idcliente" id="idcliente" class="form-control" placeholder="cliente">
+             <!--<select name="idcliente" id="idcliente" class="form-control selectpicker" data-live-search="true">
               @foreach($personas as $persona)
               <option value="{{$persona->idpersona}}">{{$persona->nombre}}</option>
               @endforeach
-              </select>
+              </select>-->
             </div>
        </div>
             <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
@@ -56,11 +57,16 @@
             <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
             <div class="form-group">
             <label>Articulo</label>
-            <select name="pidarticulo" id="pidarticulo" class="form-control selectpicker" data-live-search="true">
+           
+            <!--<input type="text" name="pidarticulo" id="pidarticulo" class="form-control" placeholder="codigo articulo">-->
+             <select name="pidarticulo" id="pidarticulo" class="form-control selectpicker" data-live-search="true">
             @foreach($articulos as $articulo)
             <option value="{{$articulo->idarticulo}}_{{$articulo->stock}}_{{$articulo->precio_promedio}}">{{$articulo->articulo}}</option>
             @endforeach
             </select>
+            <!--<select name="pidarticulo" id="pidarticulo" class="form-control selectpicker" data-live-search="true">
+            
+            </select>-->
             </div>
             </div>
             <div class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
@@ -140,6 +146,13 @@
   subtotal=[];
   $("#guardar").hide();
   $("#pidarticulo").change(mostrarValores);
+
+  /*$(document).on('keyup', '#pidarticulo', function() {
+    var valorcaja = (this).val;
+    if (valorcaja!="") {
+      mostrarValores()
+    }
+  });*/
 
   function mostrarValores()
   {
